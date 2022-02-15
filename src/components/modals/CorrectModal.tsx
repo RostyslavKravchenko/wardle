@@ -1,4 +1,3 @@
-import { Cell } from '../grid/Cell'
 import { WORDS } from '../../constants/wordlist'
 import { BaseModal } from './BaseModal'
 
