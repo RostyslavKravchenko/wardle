@@ -38,33 +38,33 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
 
       <div className="flex justify-flex-start mb-1 mt-4">
-        <Cell value="W" status="correct" />
-        <Cell value="E" />
-        <Cell value="A" />
-        <Cell value="R" />
-        <Cell value="Y" />
+        <Cell value="Б" status="correct" />
+        <Cell value="О" />
+        <Cell value="М" />
+        <Cell value="Б" />
+        <Cell value="А" />
       </div>
       <p className="text-sm text-left text-gray-500 dark:text-gray-300">
         Літера <b>Б</b> є в слові і вона на правильному місці
       </p>
 
       <div className="flex justify-flex-start mb-1 mt-4">
-        <Cell value="P" />
-        <Cell value="I" />
-        <Cell value="L" status="present" />
-        <Cell value="O" />
-        <Cell value="T" />
+        <Cell value="З" />
+        <Cell value="А" />
+        <Cell value="П" status="present" />
+        <Cell value="А" />
+        <Cell value="С" />
       </div>
       <p className="text-sm text-left text-gray-500 dark:text-gray-300">
         Літера <b>А</b> є в слові, але вона на іншому місці
       </p>
 
       <div className="flex justify-flex-start mb-1 mt-4">
-        <Cell value="V" />
-        <Cell value="A" />
-        <Cell value="G" />
-        <Cell value="U" status="absent" />
-        <Cell value="E" />
+        <Cell value="С" />
+        <Cell value="Т" />
+        <Cell value="Р" />
+        <Cell value="Е" status="absent" />
+        <Cell value="С" />
       </div>
       <p className="text-sm text-left text-gray-500 dark:text-gray-300">
         Літери <b>С</b> зовсім немає у слові

@@ -3,9 +3,10 @@ import { VALID_GUESSES } from '../constants/validGuesses'
 import { WRONG_SPOT_MESSAGE, NOT_CONTAINED_MESSAGE } from '../constants/strings'
 import { getGuessStatuses } from './statuses'
 
-export const isWordInWordList = (word: string) => {
+export const isWordInWordList = (word: string = '') => {
   return (
-    WORDS.includes(word.toLowerCase()) ||
+    // @ts-ignore
+    WORDS[word]?.value?.includes(word.toLowerCase()) ||
     VALID_GUESSES.includes(word.toLowerCase())
   )
 }
@@ -47,9 +48,10 @@ export const getWordOfDay = () => {
   const msInDay = 86400000
   const index = Math.floor((now - epochMs) / msInDay)
   const nextday = (index + 1) * msInDay + epochMs
+  const solution = Object.values(WORDS)[index % Object.keys(WORDS).length].value.toUpperCase();
 
   return {
-    solution: WORDS[index % WORDS.length].toUpperCase(),
+    solution,
     solutionIndex: index,
     tomorrow: nextday,
   }
