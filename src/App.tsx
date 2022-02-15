@@ -19,14 +19,14 @@ import {
   // GAME_COPIED_MESSAGE,
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
-  CORRECT_WORD_MESSAGE,
+  // CORRECT_WORD_MESSAGE,
 } from './constants/strings'
 import {
   MAX_WORD_LENGTH,
   MAX_CHALLENGES,
   ALERT_TIME_MS,
   REVEAL_TIME_MS,
-  GAME_LOST_INFO_DELAY,
+  // GAME_LOST_INFO_DELAY,
 } from './constants/settings'
 import {
   isWordInWordList,
