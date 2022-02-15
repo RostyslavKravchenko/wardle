@@ -54,8 +54,7 @@
 }
 
 svg:hover {
-  animation: float infinite;
-  animation-duration: var(--animation-speed);
+  animation: none;
 }
 
 .jiggle {

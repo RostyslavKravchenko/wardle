@@ -1,7 +1,8 @@
 import {
   InformationCircleIcon,
   ChartBarIcon,
-  CogIcon,
+  MoonIcon,
+  SunIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
@@ -251,10 +252,18 @@ function App() {
           className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
         />
-        <CogIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
-          onClick={() => setIsSettingsModalOpen(true)}
-        />
+        {!isDarkMode && (
+          <MoonIcon
+            className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+            onClick={() => setIsDarkMode(true)}
+          />
+        )}
+        {isDarkMode && (
+          <SunIcon
+            className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+            onClick={() => setIsDarkMode(false)}
+          />
+        )}
       </div>
       <Grid
         guesses={guesses}
