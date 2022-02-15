@@ -7,22 +7,38 @@ type Props = {
   isOpen: boolean
   handleClose: () => void
   solution: string;
+  isFail: boolean;
 }
 
-export const CorrectModal = ({ isOpen, handleClose, solution }: Props) => {
+export const CorrectModal = ({ isOpen, handleClose, solution, isFail }: Props) => {
+  const word = solution.toLowerCase();
   return (
     <BaseModal title="" isOpen={isOpen} handleClose={handleClose}>
-      <p className="text-sm text-left mb-2 text-gray-700 dark:text-gray-300">
-        Вітаємо!
-      </p>
-      <p className="text-xs text-left mb-2 text-gray-700 dark:text-gray-300">
+      {!isFail && (
+        <>
+          <p className="text-sm text-left mb-2 text-gray-700 dark:text-gray-300">
+            Вітаємо!
+          </p>
+          <p className="text-sm text-left mb-2 text-gray-700 dark:text-gray-300">
+            Більше вгаданих слів — краща підготовка!
+          </p>
+        </>
+      )}
+      {isFail && (
+        <>
+          <p className="text-sm text-left mb-2 text-gray-700 dark:text-gray-300">
+            На жаль, ви не вгадали… Та знання важливіші за ігри.
+          </p>
+          <p className="text-sm text-left mb-4 text-gray-700 dark:text-gray-300">
+            Слово було:
+          </p>
+        </>
+      )}
+      <p className="text-lg text-left mb-4 font-bold text-gray-700 dark:text-gray-300">
         {
           // @ts-ignore
-          `${WORDS[solution]?.value.toUpperCase()} - ${WORDS[solution]?.text}`
+          `${WORDS[word]?.value.toUpperCase()} - ${WORDS[word]?.text}`
         }
-      </p>
-      <p className="text-sm text-left mb-2 text-gray-700 dark:text-gray-300">
-        Більше вгаданих слів — краща підготовка!
       </p>
       <p className="text-sm text-left mb-2 text-gray-700 dark:text-gray-300">
         Нове слово через {' '}

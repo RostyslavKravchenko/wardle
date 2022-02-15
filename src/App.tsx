@@ -16,7 +16,7 @@ import { CorrectModal } from './components/modals/CorrectModal'
 import {
   GAME_TITLE,
   WIN_MESSAGES,
-  GAME_COPIED_MESSAGE,
+  // GAME_COPIED_MESSAGE,
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
@@ -146,17 +146,17 @@ function App() {
           WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
         )
 
-        setTimeout(() => {
-          setSuccessAlert('')
-          setIsStatsModalOpen(true)
-        }, ALERT_TIME_MS)
+        // setTimeout(() => {
+        //   setSuccessAlert('')
+        //   setIsStatsModalOpen(true)
+        // }, ALERT_TIME_MS)
       }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
     }
-    if (isGameLost) {
-      setTimeout(() => {
-        setIsStatsModalOpen(true)
-      }, GAME_LOST_INFO_DELAY)
-    }
+    // if (isGameLost) {
+    //   setTimeout(() => {
+    //     setIsStatsModalOpen(true)
+    //   }, GAME_LOST_INFO_DELAY)
+    // }
   }, [isGameWon, isGameLost])
 
   const onChar = (value: string) => {
@@ -289,10 +289,7 @@ function App() {
         gameStats={stats}
         isGameLost={isGameLost}
         isGameWon={isGameWon}
-        handleShare={() => {
-          setSuccessAlert(GAME_COPIED_MESSAGE)
-          return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS)
-        }}
+        handleShare={() => {}}
         isHardMode={isHardMode}
       />
       <AboutModal
@@ -325,11 +322,18 @@ function App() {
         isOpen={isWordNotFoundAlertOpen}
       />
       <Alert message={missingLetterMessage} isOpen={isMissingPreviousLetters} />
-      <Alert
-        message={CORRECT_WORD_MESSAGE(solution)}
+      {/*<Alert*/}
+      {/*  message={CORRECT_WORD_MESSAGE(solution)}*/}
+      {/*  isOpen={isGameLost && !isRevealing}*/}
+      {/*/>*/}
+      <CorrectModal
+        isFail={true}
         isOpen={isGameLost && !isRevealing}
+        handleClose={() => setIsRevealing(true)}
+        solution={solution}
       />
       <CorrectModal
+        isFail={false}
         isOpen={successAlert !== ''}
         handleClose={() => setSuccessAlert('')}
         solution={solution}
