@@ -26,7 +26,7 @@ import {
   MAX_CHALLENGES,
   ALERT_TIME_MS,
   REVEAL_TIME_MS,
-  // GAME_LOST_INFO_DELAY,
+  GAME_LOST_INFO_DELAY,
 } from './constants/settings'
 import {
   isWordInWordList,
@@ -55,6 +55,7 @@ function App() {
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
+  const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false)
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [isHardModeAlertOpen, setIsHardModeAlertOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
@@ -146,11 +147,18 @@ function App() {
           WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
         )
 
+        setIsCorrectModalOpen(true)
         // setTimeout(() => {
         //   setSuccessAlert('')
         //   setIsStatsModalOpen(true)
         // }, ALERT_TIME_MS)
       }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
+    }
+
+    if (isGameLost) {
+      setTimeout(() => {
+        setIsCorrectModalOpen(true)
+      }, GAME_LOST_INFO_DELAY)
     }
     // if (isGameLost) {
     //   setTimeout(() => {
@@ -328,14 +336,21 @@ function App() {
       {/*/>*/}
       <CorrectModal
         isFail={true}
-        isOpen={isGameLost && !isRevealing}
-        handleClose={() => setIsRevealing(true)}
+        isOpen={isGameLost && !isRevealing && isCorrectModalOpen}
+        handleClose={() => {
+          setIsCorrectModalOpen(false)
+          setIsStatsModalOpen(true)
+        }}
         solution={solution}
       />
       <CorrectModal
         isFail={false}
-        isOpen={successAlert !== ''}
-        handleClose={() => setSuccessAlert('')}
+        isOpen={successAlert !== '' && isCorrectModalOpen}
+        handleClose={() => {
+          setSuccessAlert('')
+          setIsCorrectModalOpen(false)
+          setIsStatsModalOpen(true)
+        }}
         solution={solution}
       />
     </div>
